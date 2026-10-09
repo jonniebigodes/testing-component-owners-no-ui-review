@@ -1,136 +1,150 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import DatePicker, { type DateValue } from './DatePicker';
-import { useState } from 'react';
-import { CalendarDate } from '@internationalized/date';
+import type { Meta, StoryObj } from "@storybook/react";
+import DatePicker, { type DateValue } from "./DatePicker";
+import { useState } from "react";
+import { CalendarDate } from "@internationalized/date";
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Components/DatePicker',
+  title: "Components/DatePicker",
   component: DatePicker,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: {
-      control: 'select',
-      options: ['single', 'multiple'],
-      description: 'The selection mode of the date picker',
+      control: "select",
+      options: ["single", "multiple"],
+      description: "The selection mode of the date picker",
     },
     value: {
-      control: 'object',
-      description: 'The controlled selected date(s)',
+      control: "object",
+      description: "The controlled selected date(s)",
     },
     onValueChange: {
-      action: 'valueChanged',
-      description: 'Function called when the value changes',
+      action: "valueChanged",
+      description: "Function called when the value changes",
     },
     open: {
-      control: 'boolean',
-      description: 'Whether the date picker is open',
+      control: "boolean",
+      description: "Whether the date picker is open",
     },
     onOpenChange: {
-      action: 'openChanged',
-      description: 'Function called when the open state changes',
+      action: "openChanged",
+      description: "Function called when the open state changes",
     },
     placeholder: {
-      control: 'object',
-      description: 'The placeholder date',
+      control: "object",
+      description: "The placeholder date",
     },
     isDateUnavailable: {
-      description: 'Function that determines if a date should be unavailable',
+      description: "Function that determines if a date should be unavailable",
     },
     isDateDisabled: {
-      description: 'Function that determines if a date should be disabled',
+      description: "Function that determines if a date should be disabled",
     },
     required: {
-      control: 'boolean',
-      description: 'Whether the date picker is required',
+      control: "boolean",
+      description: "Whether the date picker is required",
     },
     onInvalid: {
-      action: 'invalid',
-      description: 'Function called when the date picker becomes invalid',
+      action: "invalid",
+      description: "Function called when the date picker becomes invalid",
     },
     errorMessageId: {
-      control: 'text',
-      description: 'The id of the error message element for accessibility',
+      control: "text",
+      description: "The id of the error message element for accessibility",
     },
     disableDaysOutsideMonth: {
-      control: 'boolean',
-      description: 'Disable days outside the current month',
+      control: "boolean",
+      description: "Disable days outside the current month",
     },
     closeOnDateSelect: {
-      control: 'boolean',
-      description: 'Close the date picker when a date is selected',
+      control: "boolean",
+      description: "Close the date picker when a date is selected",
     },
     preventDeselect: {
-      control: 'boolean',
-      description: 'Prevent deselecting a date',
+      control: "boolean",
+      description: "Prevent deselecting a date",
     },
     weekStartsOn: {
-      control: 'select',
+      control: "select",
       options: [0, 1, 2, 3, 4, 5, 6],
-      description: 'The first day of the week',
+      description: "The first day of the week",
     },
     weekdayFormat: {
-      control: 'select',
-      options: ['narrow', 'short', 'long'],
-      description: 'The format of the week days',
+      control: "select",
+      options: ["narrow", "short", "long"],
+      description: "The format of the week days",
     },
     calendarLabel: {
-      control: 'text',
-      description: 'The accessible label for the calendar',
+      control: "text",
+      description: "The accessible label for the calendar",
     },
     fixedWeeks: {
-      control: 'boolean',
-      description: 'Whether to show fixed 6 weeks',
+      control: "boolean",
+      description: "Whether to show fixed 6 weeks",
     },
     minValue: {
-      control: 'object',
-      description: 'Minimum selectable date',
+      control: "object",
+      description: "Minimum selectable date",
     },
     maxValue: {
-      control: 'object',
-      description: 'Maximum selectable date',
+      control: "object",
+      description: "Maximum selectable date",
     },
     locale: {
-      control: 'text',
-      description: 'Locale for date formatting',
+      control: "text",
+      description: "Locale for date formatting",
     },
     numberOfMonths: {
-      control: 'number',
-      description: 'Number of months to display',
+      control: "number",
+      description: "Number of months to display",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Whether the date picker is disabled',
+      control: "boolean",
+      description: "Whether the date picker is disabled",
     },
     readOnly: {
-      control: 'boolean',
-      description: 'Whether the date picker is read-only',
+      control: "boolean",
+      description: "Whether the date picker is read-only",
     },
     hideTimeZone: {
-      control: 'boolean',
-      description: 'Hide the time zone segment',
+      control: "boolean",
+      description: "Hide the time zone segment",
     },
     monthFormat: {
-      control: 'select',
-      options: ['short', 'long', 'narrow', 'numeric', '2-digit'],
-      description: 'Format of month display',
+      control: "select",
+      options: ["short", "long", "narrow", "numeric", "2-digit"],
+      description: "Format of month display",
     },
     yearFormat: {
-      control: 'select',
-      options: ['numeric', '2-digit'],
-      description: 'Format of year display',
+      control: "select",
+      options: ["numeric", "2-digit"],
+      description: "Format of year display",
     },
     children: {
-      control: 'text',
-      description: 'Custom label content',
+      control: "text",
+      description: "Custom label content",
     },
     name: {
-      control: 'text',
-      description: 'Name attribute for form submission',
+      control: "text",
+      description: "Name attribute for form submission",
     },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          padding: "3rem",
+          backgroundColor: "#5A1897",
+          borderRadius: "8px",
+          border: "6px solid #9760CA",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -141,7 +155,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    children: 'Select a date',
+    children: "Select a date",
   },
 };
 
@@ -150,7 +164,7 @@ export const Default: Story = {
  */
 export const WithMinMaxValue: Story = {
   args: {
-    children: 'Choose a date in range',
+    children: "Choose a date in range",
     value: [new CalendarDate(2024, 6, 15)],
     minValue: new CalendarDate(2024, 6, 1),
     maxValue: new CalendarDate(2024, 6, 30),
@@ -162,7 +176,7 @@ export const WithMinMaxValue: Story = {
  */
 export const CustomChildren: Story = {
   args: {
-    children: 'Book an Appointment',
+    children: "Book an Appointment",
   },
 };
 
@@ -171,8 +185,8 @@ export const CustomChildren: Story = {
  */
 export const MultipleSelection: Story = {
   args: {
-    children: 'Select multiple dates',
-    type: 'multiple',
+    children: "Select multiple dates",
+    type: "multiple",
     value: [
       new CalendarDate(2024, 1, 15),
       new CalendarDate(2024, 1, 20),
@@ -186,7 +200,7 @@ export const MultipleSelection: Story = {
  */
 export const CloseOnSelect: Story = {
   args: {
-    children: 'Close on select',
+    children: "Close on select",
     closeOnDateSelect: true,
   },
 };
@@ -196,7 +210,7 @@ export const CloseOnSelect: Story = {
  */
 export const Required: Story = {
   args: {
-    children: 'Required Date *',
+    children: "Required Date *",
     required: true,
   },
 };
@@ -206,7 +220,7 @@ export const Required: Story = {
  */
 export const Disabled: Story = {
   args: {
-    children: 'Disabled Date Picker',
+    children: "Disabled Date Picker",
     disabled: true,
     value: [new CalendarDate(2024, 1, 15)],
   },
@@ -217,7 +231,7 @@ export const Disabled: Story = {
  */
 export const ReadOnly: Story = {
   args: {
-    children: 'Read-only Date Picker',
+    children: "Read-only Date Picker",
     readOnly: true,
     value: [new CalendarDate(2024, 1, 15)],
   },
@@ -228,7 +242,7 @@ export const ReadOnly: Story = {
  */
 export const WeekStartsMonday: Story = {
   args: {
-    children: 'Week starts on Monday',
+    children: "Week starts on Monday",
     weekStartsOn: 1,
   },
 };
@@ -238,7 +252,7 @@ export const WeekStartsMonday: Story = {
  */
 export const FixedWeeks: Story = {
   args: {
-    children: 'Fixed 6 Weeks',
+    children: "Fixed 6 Weeks",
     fixedWeeks: true,
   },
 };
@@ -248,8 +262,8 @@ export const FixedWeeks: Story = {
  */
 export const NarrowWeekdays: Story = {
   args: {
-    children: 'Narrow Weekday Format',
-    weekdayFormat: 'narrow',
+    children: "Narrow Weekday Format",
+    weekdayFormat: "narrow",
   },
 };
 
@@ -258,8 +272,8 @@ export const NarrowWeekdays: Story = {
  */
 export const LongWeekdays: Story = {
   args: {
-    children: 'Long Weekday Format',
-    weekdayFormat: 'long',
+    children: "Long Weekday Format",
+    weekdayFormat: "long",
   },
 };
 
@@ -268,7 +282,7 @@ export const LongWeekdays: Story = {
  */
 export const DisableDaysOutsideMonth: Story = {
   args: {
-    children: 'Days Outside Month Disabled',
+    children: "Days Outside Month Disabled",
     disableDaysOutsideMonth: true,
   },
 };
@@ -278,7 +292,7 @@ export const DisableDaysOutsideMonth: Story = {
  */
 export const MultipleMonths: Story = {
   args: {
-    children: 'Multiple Months',
+    children: "Multiple Months",
     numberOfMonths: 2,
   },
 };
@@ -288,7 +302,7 @@ export const MultipleMonths: Story = {
  */
 export const CustomDisabledDates: Story = {
   args: {
-    children: 'Weekends Disabled',
+    children: "Weekends Disabled",
     isDateDisabled: (date: DateValue) => {
       // Disable weekends (Saturday and Sunday)
       const d = new Date(date.year, date.month - 1, date.day);
@@ -302,7 +316,7 @@ export const CustomDisabledDates: Story = {
  */
 export const PreventDeselect: Story = {
   args: {
-    children: 'Prevent Deselect',
+    children: "Prevent Deselect",
     preventDeselect: true,
     value: [new CalendarDate(2024, 1, 15)],
   },
@@ -319,7 +333,7 @@ export const Controlled: Story = {
     const [open, setOpen] = useState(false);
 
     return (
-      <div css={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <DatePicker
           value={value}
           onValueChange={(details) => setValue(details.value)}
@@ -329,30 +343,30 @@ export const Controlled: Story = {
         />
         <div
           css={{
-            fontSize: '14px',
-            color: '#6b7280',
-            padding: '12px',
-            backgroundColor: '#f3f4f6',
-            borderRadius: '8px',
+            fontSize: "14px",
+            color: "#6b7280",
+            padding: "12px",
+            backgroundColor: "#f3f4f6",
+            borderRadius: "8px",
           }}
         >
-          Selected:{' '}
+          Selected:{" "}
           {value.length > 0
-            ? `${value[0].year}-${value[0].month.toString().padStart(2, '0')}-${value[0].day.toString().padStart(2, '0')}`
-            : 'None'}
+            ? `${value[0].year}-${value[0].month.toString().padStart(2, "0")}-${value[0].day.toString().padStart(2, "0")}`
+            : "None"}
           <br />
-          Open: {open ? 'Yes' : 'No'}
+          Open: {open ? "Yes" : "No"}
         </div>
         <button
           onClick={() => setValue([new CalendarDate(2024, 1, 1)])}
           css={{
-            padding: '8px 16px',
-            backgroundColor: '#3b82f6',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
+            padding: "8px 16px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
           }}
         >
           Set to January 1, 2024
@@ -370,7 +384,7 @@ export const MultipleControlled: Story = {
     const [value, setValue] = useState<DateValue[]>([]);
 
     return (
-      <div css={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <DatePicker
           type="multiple"
           value={value}
@@ -379,25 +393,25 @@ export const MultipleControlled: Story = {
         />
         <div
           css={{
-            fontSize: '14px',
-            color: '#6b7280',
-            padding: '12px',
-            backgroundColor: '#f3f4f6',
-            borderRadius: '8px',
+            fontSize: "14px",
+            color: "#6b7280",
+            padding: "12px",
+            backgroundColor: "#f3f4f6",
+            borderRadius: "8px",
           }}
         >
           Selected dates ({value.length}):
           {value.length > 0 ? (
-            <ul css={{ margin: '8px 0 0', paddingLeft: '20px' }}>
+            <ul css={{ margin: "8px 0 0", paddingLeft: "20px" }}>
               {value.map((date, idx) => (
                 <li key={idx}>
-                  {date.year}-{date.month.toString().padStart(2, '0')}-
-                  {date.day.toString().padStart(2, '0')}
+                  {date.year}-{date.month.toString().padStart(2, "0")}-
+                  {date.day.toString().padStart(2, "0")}
                 </li>
               ))}
             </ul>
           ) : (
-            ' None'
+            " None"
           )}
         </div>
       </div>
@@ -420,34 +434,34 @@ export const BookingDatePicker: Story = {
     const isDateUnavailable = (date: DateValue) => {
       return unavailableDates.some(
         (d) =>
-          d.year === date.year && d.month === date.month && d.day === date.day
+          d.year === date.year && d.month === date.month && d.day === date.day,
       );
     };
 
     return (
       <div
         css={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          padding: '24px',
-          backgroundColor: '#f9fafb',
-          borderRadius: '12px',
-          maxWidth: '400px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "24px",
+          backgroundColor: "#f9fafb",
+          borderRadius: "12px",
+          maxWidth: "400px",
         }}
       >
         <div>
           <h3
             css={{
               margin: 0,
-              fontSize: '18px',
+              fontSize: "18px",
               fontWeight: 600,
-              color: '#111827',
+              color: "#111827",
             }}
           >
             Book Your Appointment
           </h3>
-          <p css={{ margin: '4px 0 0', fontSize: '14px', color: '#6b7280' }}>
+          <p css={{ margin: "4px 0 0", fontSize: "14px", color: "#6b7280" }}>
             Select an available date
           </p>
         </div>
@@ -465,16 +479,16 @@ export const BookingDatePicker: Story = {
         {value.length > 0 && (
           <div
             css={{
-              padding: '12px',
-              backgroundColor: '#d1fae5',
-              color: '#065f46',
-              borderRadius: '8px',
-              fontSize: '14px',
+              padding: "12px",
+              backgroundColor: "#d1fae5",
+              color: "#065f46",
+              borderRadius: "8px",
+              fontSize: "14px",
             }}
           >
             ✓ Appointment booked for: {value[0].year}-
-            {value[0].month.toString().padStart(2, '0')}-
-            {value[0].day.toString().padStart(2, '0')}
+            {value[0].month.toString().padStart(2, "0")}-
+            {value[0].day.toString().padStart(2, "0")}
           </div>
         )}
       </div>
@@ -488,17 +502,17 @@ export const BookingDatePicker: Story = {
 export const FormIntegration: Story = {
   render: () => {
     const [value, setValue] = useState<DateValue[]>([]);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
       if (value.length === 0) {
-        setErrorMessage('Please select a date');
+        setErrorMessage("Please select a date");
       } else {
-        setErrorMessage('');
+        setErrorMessage("");
 
         console.log(
-          `Form submitted with date: ${value[0].year}-${value[0].month}-${value[0].day}`
+          `Form submitted with date: ${value[0].year}-${value[0].month}-${value[0].day}`,
         );
       }
     };
@@ -507,14 +521,14 @@ export const FormIntegration: Story = {
       <form
         onSubmit={handleSubmit}
         css={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          padding: '24px',
-          backgroundColor: '#ffffff',
-          border: '1px solid #e5e7eb',
-          borderRadius: '12px',
-          maxWidth: '400px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "24px",
+          backgroundColor: "#ffffff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "12px",
+          maxWidth: "400px",
         }}
       >
         <DatePicker
@@ -522,12 +536,12 @@ export const FormIntegration: Story = {
           onValueChange={(details) => {
             setValue(details.value);
             if (details.value.length > 0) {
-              setErrorMessage('');
+              setErrorMessage("");
             }
           }}
           required
           name="appointmentDate"
-          errorMessageId={errorMessage ? 'date-error' : undefined}
+          errorMessageId={errorMessage ? "date-error" : undefined}
           children="Select Date *"
         />
 
@@ -535,12 +549,12 @@ export const FormIntegration: Story = {
           <div
             id="date-error"
             css={{
-              padding: '8px 12px',
-              backgroundColor: '#fef2f2',
-              color: '#dc2626',
-              borderRadius: '6px',
-              fontSize: '14px',
-              border: '1px solid #fecaca',
+              padding: "8px 12px",
+              backgroundColor: "#fef2f2",
+              color: "#dc2626",
+              borderRadius: "6px",
+              fontSize: "14px",
+              border: "1px solid #fecaca",
             }}
           >
             {errorMessage}
@@ -550,13 +564,13 @@ export const FormIntegration: Story = {
         <button
           type="submit"
           css={{
-            padding: '10px 16px',
-            backgroundColor: '#3b82f6',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
+            padding: "10px 16px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
             fontWeight: 500,
           }}
         >
@@ -572,7 +586,7 @@ export const FormIntegration: Story = {
  */
 export const DifferentLocales: Story = {
   render: () => (
-    <div css={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+    <div css={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
       <DatePicker children="English (US)" locale="en-US" />
       <DatePicker children="Español" locale="es-ES" />
       <DatePicker children="Français" locale="fr-FR" />
@@ -586,7 +600,7 @@ export const DifferentLocales: Story = {
  */
 export const Variations: Story = {
   render: () => (
-    <div css={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <div css={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <DatePicker children="Default" />
       <DatePicker children="Fixed Weeks" fixedWeeks />
       <DatePicker children="Week Starts Monday" weekStartsOn={1} />
