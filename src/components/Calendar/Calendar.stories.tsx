@@ -1,98 +1,112 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Calendar, { type DateValue } from './Calendar';
-import { useState } from 'react';
-import { CalendarDate } from '@internationalized/date';
+import type { Meta, StoryObj } from "@storybook/react";
+import Calendar, { type DateValue } from "./Calendar";
+import { useState } from "react";
+import { CalendarDate } from "@internationalized/date";
 
 const meta: Meta<typeof Calendar> = {
-  title: 'Components/Calendar',
+  title: "Components/Calendar",
   component: Calendar,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: {
-      control: 'select',
-      options: ['single', 'multiple'],
-      description: 'The selection mode of the calendar',
+      control: "select",
+      options: ["single", "multiple"],
+      description: "The selection mode of the calendar",
     },
     value: {
-      control: 'object',
-      description: 'The controlled selected date(s)',
+      control: "object",
+      description: "The controlled selected date(s)",
     },
     onValueChange: {
-      action: 'valueChanged',
-      description: 'Function called when the value changes',
+      action: "valueChanged",
+      description: "Function called when the value changes",
     },
     placeholder: {
-      control: 'object',
-      description: 'The placeholder date',
+      control: "object",
+      description: "The placeholder date",
     },
     weekStartsOn: {
-      control: 'select',
+      control: "select",
       options: [0, 1, 2, 3, 4, 5, 6],
-      description: 'The first day of the week',
+      description: "The first day of the week",
     },
     weekdayFormat: {
-      control: 'select',
-      options: ['narrow', 'short', 'long'],
-      description: 'The format of the week days',
+      control: "select",
+      options: ["narrow", "short", "long"],
+      description: "The format of the week days",
     },
     calendarLabel: {
-      control: 'text',
-      description: 'The accessible label for the calendar',
+      control: "text",
+      description: "The accessible label for the calendar",
     },
     fixedWeeks: {
-      control: 'boolean',
-      description: 'Whether to show fixed 6 weeks',
+      control: "boolean",
+      description: "Whether to show fixed 6 weeks",
     },
     minValue: {
-      control: 'object',
-      description: 'Minimum selectable date',
+      control: "object",
+      description: "Minimum selectable date",
     },
     maxValue: {
-      control: 'object',
-      description: 'Maximum selectable date',
+      control: "object",
+      description: "Maximum selectable date",
     },
     locale: {
-      control: 'text',
-      description: 'Locale for date formatting',
+      control: "text",
+      description: "Locale for date formatting",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Whether the calendar is disabled',
+      control: "boolean",
+      description: "Whether the calendar is disabled",
     },
     readOnly: {
-      control: 'boolean',
-      description: 'Whether the calendar is read-only',
+      control: "boolean",
+      description: "Whether the calendar is read-only",
     },
     disableDaysOutsideMonth: {
-      control: 'boolean',
-      description: 'Disable days outside the current month',
+      control: "boolean",
+      description: "Disable days outside the current month",
     },
     maxDays: {
-      control: 'number',
-      description: 'Maximum number of selectable days (multiple mode)',
+      control: "number",
+      description: "Maximum number of selectable days (multiple mode)",
     },
     monthFormat: {
-      control: 'select',
-      options: ['long', 'short'],
-      description: 'Format of month display',
+      control: "select",
+      options: ["long", "short"],
+      description: "Format of month display",
     },
     yearFormat: {
-      control: 'select',
-      options: ['numeric', '2-digit'],
-      description: 'Format of year display',
+      control: "select",
+      options: ["numeric", "2-digit"],
+      description: "Format of year display",
     },
     children: {
-      control: 'text',
-      description: 'Custom content above calendar',
+      control: "text",
+      description: "Custom content above calendar",
     },
     name: {
-      control: 'text',
-      description: 'Name attribute for form submission',
+      control: "text",
+      description: "Name attribute for form submission",
     },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          padding: "3rem",
+          backgroundColor: "#6F2CAC",
+          borderRadius: "8px",
+          border: "1px solid #FF4785",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -103,7 +117,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    children: 'Select a date',
+    children: "Select a date",
   },
 };
 
@@ -112,7 +126,7 @@ export const Default: Story = {
  */
 export const WithMinMaxValue: Story = {
   args: {
-    children: 'Choose a date in range',
+    children: "Choose a date in range",
     value: [new CalendarDate(2024, 6, 15)],
     minValue: new CalendarDate(2024, 6, 1),
     maxValue: new CalendarDate(2024, 6, 30),
@@ -124,7 +138,7 @@ export const WithMinMaxValue: Story = {
  */
 export const CustomChildren: Story = {
   args: {
-    children: 'Book an Appointment',
+    children: "Book an Appointment",
   },
 };
 
@@ -133,8 +147,8 @@ export const CustomChildren: Story = {
  */
 export const MultipleSelection: Story = {
   args: {
-    children: 'Select multiple dates',
-    type: 'multiple',
+    children: "Select multiple dates",
+    type: "multiple",
     value: [
       new CalendarDate(2024, 1, 15),
       new CalendarDate(2024, 1, 20),
@@ -148,7 +162,7 @@ export const MultipleSelection: Story = {
  */
 export const Disabled: Story = {
   args: {
-    children: 'Disabled Calendar',
+    children: "Disabled Calendar",
     disabled: true,
     value: [new CalendarDate(2024, 1, 15)],
   },
@@ -159,7 +173,7 @@ export const Disabled: Story = {
  */
 export const ReadOnly: Story = {
   args: {
-    children: 'Read-only Calendar',
+    children: "Read-only Calendar",
     readOnly: true,
     value: [new CalendarDate(2024, 1, 15)],
   },
@@ -170,7 +184,7 @@ export const ReadOnly: Story = {
  */
 export const WeekStartsMonday: Story = {
   args: {
-    children: 'Week starts on Monday',
+    children: "Week starts on Monday",
     weekStartsOn: 1,
   },
 };
@@ -180,7 +194,7 @@ export const WeekStartsMonday: Story = {
  */
 export const FixedWeeks: Story = {
   args: {
-    children: 'Fixed 6 Weeks',
+    children: "Fixed 6 Weeks",
     fixedWeeks: true,
   },
 };
@@ -190,8 +204,8 @@ export const FixedWeeks: Story = {
  */
 export const NarrowWeekdays: Story = {
   args: {
-    children: 'Narrow Weekday Format',
-    weekdayFormat: 'narrow',
+    children: "Narrow Weekday Format",
+    weekdayFormat: "narrow",
   },
 };
 
@@ -200,8 +214,8 @@ export const NarrowWeekdays: Story = {
  */
 export const LongWeekdays: Story = {
   args: {
-    children: 'Long Weekday Format',
-    weekdayFormat: 'long',
+    children: "Long Weekday Format",
+    weekdayFormat: "long",
   },
 };
 
@@ -210,7 +224,7 @@ export const LongWeekdays: Story = {
  */
 export const DisableDaysOutsideMonth: Story = {
   args: {
-    children: 'Days Outside Month Disabled',
+    children: "Days Outside Month Disabled",
     disableDaysOutsideMonth: true,
   },
 };
@@ -220,8 +234,8 @@ export const DisableDaysOutsideMonth: Story = {
  */
 export const MaxDaysLimit: Story = {
   args: {
-    children: 'Max 3 Days Selection',
-    type: 'multiple',
+    children: "Max 3 Days Selection",
+    type: "multiple",
     maxDays: 3,
   },
 };
@@ -231,7 +245,7 @@ export const MaxDaysLimit: Story = {
  */
 export const CustomDisabledDates: Story = {
   args: {
-    children: 'Weekends Disabled',
+    children: "Weekends Disabled",
     isDateDisabled: (date: DateValue) => {
       // Disable weekends (Saturday and Sunday)
       const d = new Date(date.year, date.month - 1, date.day);
@@ -250,7 +264,7 @@ export const Controlled: Story = {
     ]);
 
     return (
-      <div css={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Calendar
           value={value}
           onValueChange={(details) => setValue(details.value)}
@@ -258,28 +272,28 @@ export const Controlled: Story = {
         />
         <div
           css={{
-            fontSize: '14px',
-            color: '#6b7280',
-            padding: '12px',
-            backgroundColor: '#f3f4f6',
-            borderRadius: '8px',
+            fontSize: "14px",
+            color: "#6b7280",
+            padding: "12px",
+            backgroundColor: "#f3f4f6",
+            borderRadius: "8px",
           }}
         >
-          Selected:{' '}
+          Selected:{" "}
           {value.length > 0
-            ? `${value[0].year}-${value[0].month.toString().padStart(2, '0')}-${value[0].day.toString().padStart(2, '0')}`
-            : 'None'}
+            ? `${value[0].year}-${value[0].month.toString().padStart(2, "0")}-${value[0].day.toString().padStart(2, "0")}`
+            : "None"}
         </div>
         <button
           onClick={() => setValue([new CalendarDate(2024, 1, 1)])}
           css={{
-            padding: '8px 16px',
-            backgroundColor: '#3b82f6',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
+            padding: "8px 16px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
           }}
         >
           Set to January 1, 2024
@@ -297,7 +311,7 @@ export const MultipleControlled: Story = {
     const [value, setValue] = useState<DateValue[]>([]);
 
     return (
-      <div css={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Calendar
           type="multiple"
           value={value}
@@ -306,25 +320,25 @@ export const MultipleControlled: Story = {
         />
         <div
           css={{
-            fontSize: '14px',
-            color: '#6b7280',
-            padding: '12px',
-            backgroundColor: '#f3f4f6',
-            borderRadius: '8px',
+            fontSize: "14px",
+            color: "#6b7280",
+            padding: "12px",
+            backgroundColor: "#f3f4f6",
+            borderRadius: "8px",
           }}
         >
           Selected dates ({value.length}):
           {value.length > 0 ? (
-            <ul css={{ margin: '8px 0 0', paddingLeft: '20px' }}>
+            <ul css={{ margin: "8px 0 0", paddingLeft: "20px" }}>
               {value.map((date, idx) => (
                 <li key={idx}>
-                  {date.year}-{date.month.toString().padStart(2, '0')}-
-                  {date.day.toString().padStart(2, '0')}
+                  {date.year}-{date.month.toString().padStart(2, "0")}-
+                  {date.day.toString().padStart(2, "0")}
                 </li>
               ))}
             </ul>
           ) : (
-            ' None'
+            " None"
           )}
         </div>
       </div>
@@ -347,33 +361,33 @@ export const BookingCalendar: Story = {
     const isDateUnavailable = (date: DateValue) => {
       return unavailableDates.some(
         (d) =>
-          d.year === date.year && d.month === date.month && d.day === date.day
+          d.year === date.year && d.month === date.month && d.day === date.day,
       );
     };
 
     return (
       <div
         css={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          padding: '24px',
-          backgroundColor: '#f9fafb',
-          borderRadius: '12px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "24px",
+          backgroundColor: "#f9fafb",
+          borderRadius: "12px",
         }}
       >
         <div>
           <h3
             css={{
               margin: 0,
-              fontSize: '18px',
+              fontSize: "18px",
               fontWeight: 600,
-              color: '#111827',
+              color: "#111827",
             }}
           >
             Book Your Appointment
           </h3>
-          <p css={{ margin: '4px 0 0', fontSize: '14px', color: '#6b7280' }}>
+          <p css={{ margin: "4px 0 0", fontSize: "14px", color: "#6b7280" }}>
             Select an available date
           </p>
         </div>
@@ -389,16 +403,16 @@ export const BookingCalendar: Story = {
         {value.length > 0 && (
           <div
             css={{
-              padding: '12px',
-              backgroundColor: '#d1fae5',
-              color: '#065f46',
-              borderRadius: '8px',
-              fontSize: '14px',
+              padding: "12px",
+              backgroundColor: "#d1fae5",
+              color: "#065f46",
+              borderRadius: "8px",
+              fontSize: "14px",
             }}
           >
             ✓ Appointment booked for: {value[0].year}-
-            {value[0].month.toString().padStart(2, '0')}-
-            {value[0].day.toString().padStart(2, '0')}
+            {value[0].month.toString().padStart(2, "0")}-
+            {value[0].day.toString().padStart(2, "0")}
           </div>
         )}
       </div>
@@ -421,27 +435,27 @@ export const EventCalendar: Story = {
     return (
       <div
         css={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          padding: '24px',
-          backgroundColor: '#ffffff',
-          border: '1px solid #e5e7eb',
-          borderRadius: '12px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "24px",
+          backgroundColor: "#ffffff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "12px",
         }}
       >
         <div>
           <h3
             css={{
               margin: 0,
-              fontSize: '18px',
+              fontSize: "18px",
               fontWeight: 600,
-              color: '#111827',
+              color: "#111827",
             }}
           >
             Team Meeting Days
           </h3>
-          <p css={{ margin: '4px 0 0', fontSize: '14px', color: '#6b7280' }}>
+          <p css={{ margin: "4px 0 0", fontSize: "14px", color: "#6b7280" }}>
             Every Friday in January
           </p>
         </div>
@@ -454,8 +468,8 @@ export const EventCalendar: Story = {
           placeholder={new CalendarDate(2024, 1, 1)}
         />
 
-        <div css={{ fontSize: '13px', color: '#6b7280' }}>
-          {value.length} meeting{value.length !== 1 ? 's' : ''} scheduled
+        <div css={{ fontSize: "13px", color: "#6b7280" }}>
+          {value.length} meeting{value.length !== 1 ? "s" : ""} scheduled
         </div>
       </div>
     );
@@ -467,7 +481,7 @@ export const EventCalendar: Story = {
  */
 export const DifferentLocales: Story = {
   render: () => (
-    <div css={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+    <div css={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
       <Calendar children="English (US)" locale="en-US" />
       <Calendar children="Español" locale="es-ES" />
       <Calendar children="Français" locale="fr-FR" />
@@ -481,8 +495,8 @@ export const DifferentLocales: Story = {
  */
 export const ShortMonthFormat: Story = {
   args: {
-    children: 'Short Month Format',
-    monthFormat: 'short',
+    children: "Short Month Format",
+    monthFormat: "short",
   },
 };
 
@@ -491,8 +505,8 @@ export const ShortMonthFormat: Story = {
  */
 export const LongMonthFormat: Story = {
   args: {
-    children: 'Long Month Format',
-    monthFormat: 'long',
+    children: "Long Month Format",
+    monthFormat: "long",
   },
 };
 
@@ -507,26 +521,26 @@ export const BirthdayCalendar: Story = {
     return (
       <div
         css={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          padding: '24px',
-          backgroundColor: '#fef3c7',
-          borderRadius: '12px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "24px",
+          backgroundColor: "#fef3c7",
+          borderRadius: "12px",
         }}
       >
         <div>
           <h3
             css={{
               margin: 0,
-              fontSize: '18px',
+              fontSize: "18px",
               fontWeight: 600,
-              color: '#92400e',
+              color: "#92400e",
             }}
           >
             🎂 Select Your Birthday
           </h3>
-          <p css={{ margin: '4px 0 0', fontSize: '14px', color: '#78350f' }}>
+          <p css={{ margin: "4px 0 0", fontSize: "14px", color: "#78350f" }}>
             We'll send you a special gift!
           </p>
         </div>
@@ -541,17 +555,17 @@ export const BirthdayCalendar: Story = {
         {value.length > 0 && (
           <div
             css={{
-              padding: '12px',
-              backgroundColor: '#fef9c3',
-              color: '#713f12',
-              borderRadius: '8px',
-              fontSize: '14px',
-              border: '1px solid #fde047',
+              padding: "12px",
+              backgroundColor: "#fef9c3",
+              color: "#713f12",
+              borderRadius: "8px",
+              fontSize: "14px",
+              border: "1px solid #fde047",
             }}
           >
             Birthday: {value[0].year}-
-            {value[0].month.toString().padStart(2, '0')}-
-            {value[0].day.toString().padStart(2, '0')}
+            {value[0].month.toString().padStart(2, "0")}-
+            {value[0].day.toString().padStart(2, "0")}
           </div>
         )}
       </div>
@@ -564,7 +578,7 @@ export const BirthdayCalendar: Story = {
  */
 export const Variations: Story = {
   render: () => (
-    <div css={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <div css={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <Calendar children="Default" />
       <Calendar children="Fixed Weeks" fixedWeeks />
       <Calendar children="Week Starts Monday" weekStartsOn={1} />
